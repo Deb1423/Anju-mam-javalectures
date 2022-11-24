@@ -1,0 +1,216 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database shoppingdb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use shopingdb;
+ERROR 1049 (42000): Unknown database 'shopingdb'
+mysql> use shoppingdb;
+Database changed
+mysql> create table customer
+    -> (customer_id int Not Null,
+    -> custome_name VARCHAR(30) Not Null,
+    -> oder_quantity int Not Null'
+    '> Total_amount bigint Not Null'
+    -> primary key (customer_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+Total_amount bigint Not Null'
+primary key (customer_id))' at line 4
+mysql> create table customer
+    -> (customer_id int Not Null,
+    -> customer_name VARCHAR(30) Not Null,
+    -> oder_quantity int Not Null,
+    -> Total_amount bigint Not Null,
+    -> primary key (customer_id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table shopholder
+    -> (shop_id int Not Null,
+    -> shop_name VARCHAR(30) Not Null,
+    -> oder_quantity int Not Null,
+    -> oder_availabale int Not Null,
+    -> primary key (shop_id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe custromer;
+ERROR 1146 (42S02): Table 'shoppingdb.custromer' doesn't exist
+mysql> describe customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(30) | NO   |     | NULL    |       |
+| oder_quantity | int         | NO   |     | NULL    |       |
+| Total_amount  | bigint      | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> describe shopholder;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| shop_id         | int         | NO   | PRI | NULL    |       |
+| shop_name       | varchar(30) | NO   |     | NULL    |       |
+| oder_quantity   | int         | NO   |     | NULL    |       |
+| oder_availabale | int         | NO   |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into customer (customer_id,customer_name, oder_quantity,Total_amount) values(101,"DEBJIT TALUKDER",14,12000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id,customer_name, oder_quantity,Total_amount) values(102,"PRAMIT PAL",40,42000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into customer (customer_id,customer_name, oder_quantity,Total_amount) values(103,"ANKIT CHAKRABORTY",24,32000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into customer (customer_id,customer_name, oder_quantity,Total_amount) values(104,"DEEP DAS",12,12000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into customer (customer_id,customer_name, oder_quantity,Total_amount) values(105,"SHUBHAJIT ROY",18,22000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customer' at line 1
+mysql> selects * from customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selects * from customer' at line 1
+mysql> select * from customer;
++-------------+-------------------+---------------+--------------+
+| customer_id | customer_name     | oder_quantity | Total_amount |
++-------------+-------------------+---------------+--------------+
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |
+|         102 | PRAMIT PAL        |            40 |        42000 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |
+|         104 | DEEP DAS          |            12 |        12000 |
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |
++-------------+-------------------+---------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_available) values(101,"KOHILI CHAIWALA",14,10);
+ERROR 1054 (42S22): Unknown column 'oder_available' in 'field list'
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_availabale) values(101,"KOHILI CHAIWALA",14,10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_available) values(102,"Rohit PAOWALA",40,00);
+ERROR 1054 (42S22): Unknown column 'oder_available' in 'field list'
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_availabale) values(102,"Rohit PAOWALA",40,00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_availabale) values(103,"PANT KHAJNAWALA",24,00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_availabale) values(104,"KL SHIRT",12,00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into shopholder (shop_id,shop_name, oder_quantity,oder_availabale) values(105,"BHOLA CHOWMEINWALA",18,20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from shopholder;
++---------+--------------------+---------------+-----------------+
+| shop_id | shop_name          | oder_quantity | oder_availabale |
++---------+--------------------+---------------+-----------------+
+|     101 | KOHILI CHAIWALA    |            14 |              10 |
+|     102 | Rohit PAOWALA      |            40 |               0 |
+|     103 | PANT KHAJNAWALA    |            24 |               0 |
+|     104 | KL SHIRT           |            12 |               0 |
+|     105 | BHOLA CHOWMEINWALA |            18 |              20 |
++---------+--------------------+---------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select customer.customer_id,customer.customer_name,customer.Total_amount,shopholder.shop_id,shopholder.shop_name,shopholder.oder_availabale
+    -> from customer
+    -> inner join shopholder
+    -> on customer.order_quantity=shopholder.orderquantity;
+ERROR 1054 (42S22): Unknown column 'customer.order_quantity' in 'on clause'
+mysql>  select customer.customer_name,customer.oder_quantity,customer.Total_amount,shopholder.shop_name,shopholder.oder_quantity,shopholder.oder_availabale
+    -> from customer
+    -> inner join shopholder
+    -> on customer.customer_id=shopholder.shop_id;
++-------------------+---------------+--------------+--------------------+---------------+-----------------+
+| customer_name     | oder_quantity | Total_amount | shop_name          | oder_quantity | oder_availabale |
++-------------------+---------------+--------------+--------------------+---------------+-----------------+
+| DEBJIT TALUKDER   |            14 |        12000 | KOHILI CHAIWALA    |            14 |              10 |
+| PRAMIT PAL        |            40 |        42000 | Rohit PAOWALA      |            40 |               0 |
+| ANKIT CHAKRABORTY |            24 |        32000 | PANT KHAJNAWALA    |            24 |               0 |
+| DEEP DAS          |            12 |        12000 | KL SHIRT           |            12 |               0 |
+| SHUBHAJIT ROY     |            18 |        22000 | BHOLA CHOWMEINWALA |            18 |              20 |
++-------------------+---------------+--------------+--------------------+---------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select customer.customer_name,shopholder.shop_name
+    -> from customer
+    -> left join shopholder
+    -> on customer.customer_id=shopholder.shop_id;
++-------------------+--------------------+
+| customer_name     | shop_name          |
++-------------------+--------------------+
+| DEBJIT TALUKDER   | KOHILI CHAIWALA    |
+| PRAMIT PAL        | Rohit PAOWALA      |
+| ANKIT CHAKRABORTY | PANT KHAJNAWALA    |
+| DEEP DAS          | KL SHIRT           |
+| SHUBHAJIT ROY     | BHOLA CHOWMEINWALA |
++-------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select customer.customer_name,shopholder.shop_name
+    -> from customer
+    -> right join shopholder
+    -> on customer.customer_id=shopholder.shop_id;
++-------------------+--------------------+
+| customer_name     | shop_name          |
++-------------------+--------------------+
+| DEBJIT TALUKDER   | KOHILI CHAIWALA    |
+| PRAMIT PAL        | Rohit PAOWALA      |
+| ANKIT CHAKRABORTY | PANT KHAJNAWALA    |
+| DEEP DAS          | KL SHIRT           |
+| SHUBHAJIT ROY     | BHOLA CHOWMEINWALA |
++-------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * customer full join shopholder;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customer full join shopholder' at line 1
+mysql> select * from customer full join shopholder;
++-------------+-------------------+---------------+--------------+---------+--------------------+---------------+-----------------+
+| customer_id | customer_name     | oder_quantity | Total_amount | shop_id | shop_name          | oder_quantity | oder_availabale |
++-------------+-------------------+---------------+--------------+---------+--------------------+---------------+-----------------+
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |     101 | KOHILI CHAIWALA    |            14 |              10 |
+|         104 | DEEP DAS          |            12 |        12000 |     101 | KOHILI CHAIWALA    |            14 |              10 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |     101 | KOHILI CHAIWALA    |            14 |              10 |
+|         102 | PRAMIT PAL        |            40 |        42000 |     101 | KOHILI CHAIWALA    |            14 |              10 |
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |     101 | KOHILI CHAIWALA    |            14 |              10 |
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |     102 | Rohit PAOWALA      |            40 |               0 |
+|         104 | DEEP DAS          |            12 |        12000 |     102 | Rohit PAOWALA      |            40 |               0 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |     102 | Rohit PAOWALA      |            40 |               0 |
+|         102 | PRAMIT PAL        |            40 |        42000 |     102 | Rohit PAOWALA      |            40 |               0 |
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |     102 | Rohit PAOWALA      |            40 |               0 |
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |     103 | PANT KHAJNAWALA    |            24 |               0 |
+|         104 | DEEP DAS          |            12 |        12000 |     103 | PANT KHAJNAWALA    |            24 |               0 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |     103 | PANT KHAJNAWALA    |            24 |               0 |
+|         102 | PRAMIT PAL        |            40 |        42000 |     103 | PANT KHAJNAWALA    |            24 |               0 |
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |     103 | PANT KHAJNAWALA    |            24 |               0 |
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |     104 | KL SHIRT           |            12 |               0 |
+|         104 | DEEP DAS          |            12 |        12000 |     104 | KL SHIRT           |            12 |               0 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |     104 | KL SHIRT           |            12 |               0 |
+|         102 | PRAMIT PAL        |            40 |        42000 |     104 | KL SHIRT           |            12 |               0 |
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |     104 | KL SHIRT           |            12 |               0 |
+|         105 | SHUBHAJIT ROY     |            18 |        22000 |     105 | BHOLA CHOWMEINWALA |            18 |              20 |
+|         104 | DEEP DAS          |            12 |        12000 |     105 | BHOLA CHOWMEINWALA |            18 |              20 |
+|         103 | ANKIT CHAKRABORTY |            24 |        32000 |     105 | BHOLA CHOWMEINWALA |            18 |              20 |
+|         102 | PRAMIT PAL        |            40 |        42000 |     105 | BHOLA CHOWMEINWALA |            18 |              20 |
+|         101 | DEBJIT TALUKDER   |            14 |        12000 |     105 | BHOLA CHOWMEINWALA |            18 |              20 |
++-------------+-------------------+---------------+--------------+---------+--------------------+---------------+-----------------+
+25 rows in set (0.00 sec)
+
+mysql>

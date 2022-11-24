@@ -1,0 +1,96 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create Countriesdb;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Countriesdb' at line 1
+mysql> create database countriesdb;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> use countriesdb;
+Database changed
+mysql> create table counties;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create countriesdb
+    -> country_id int Not Null Auto increment,
+    -> country_name VARCHAR(30) Not Null,
+    -> region_id int Not Null,
+    -> primary key (country_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'countriesdb
+country_id int Not Null Auto increment,
+country_name VARCHAR(30) Not' at line 1
+mysql>  create table countries
+    ->  country_id int Not Null Auto increment,
+    -> country_name VARCHAR(30) Not Null,
+    -> region_id int Not Null,
+    -> primary key (country_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'country_id int Not Null Auto increment,
+country_name VARCHAR(30) Not Null,
+regio' at line 2
+mysql>  create table countries
+    -> (country_id int Not Null Auto increment,
+    -> country_name VARCHAR(30) Not Null,
+    -> region_id int Not Null,
+    -> primary key (country_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Auto increment,
+country_name VARCHAR(30) Not Null,
+region_id int Not Null,
+prima' at line 2
+mysql> create table countries
+    -> (country_id int Not Null,
+    -> country_name VARCHAR(30) Not Null,
+    -> region_id int Not Null,
+    -> primary key (country_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> describe countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | NO   | PRI | NULL    |       |
+| country_name | varchar(30) | NO   |     | NULL    |       |
+| region_id    | int         | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql> insert into(country_id,country_name,region_id) values(101,"INDIA",201);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(country_id,country_name,region_id) values(101,"INDIA",201)' at line 1
+mysql> insert into contries(country_id,country_name,region_id) values(101,"INDIA",201);
+ERROR 1146 (42S02): Table 'countriesdb.contries' doesn't exist
+mysql> insert into countries(country_id,country_name,region_id) values(101,"INDIA",201);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into countries(country_id,country_name,region_id) values(102,"PAKISTAN",202);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into countries(country_id,country_name,region_id) values(103,"NEPAL",201);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into countries(country_id,country_name,region_id) values(104,"CHAINA",202);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into countries(country_id,country_name,region_id) values(105,"UNITED STATES OF AMERICA",205);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from countries;
++------------+--------------------------+-----------+
+| country_id | country_name             | region_id |
++------------+--------------------------+-----------+
+|        101 | INDIA                    |       201 |
+|        102 | PAKISTAN                 |       202 |
+|        103 | NEPAL                    |       201 |
+|        104 | CHAINA                   |       202 |
+|        105 | UNITED STATES OF AMERICA |       205 |
++------------+--------------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql>
