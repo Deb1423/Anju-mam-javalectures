@@ -1,7 +1,15 @@
 package com.student.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,10 +26,50 @@ public class StudentController {
 	@Autowired
 	private Converter converter;
 	
+	//Create Student Api
 	@PostMapping("/newstudent")
-	public String createStudent(@RequestBody StudentDTO studentDTO)
+	public ResponseEntity<String> createStudent(@RequestBody StudentDTO studentDTO)
 	{
-		final Student student = converter.convertToEntity(studentDTO);
-		return studentService.createStudent(student);
+		final Student student= converter.convertToEntity(studentDTO);
+		 studentService.createStudent(student);
+		return new ResponseEntity<String>("New Student details added",
+				HttpStatus.CREATED);
+	}
+	
+	//Update Student Api
+	@PutMapping("/updatestudent/{id}")
+	public StudentDTO updatestudent(@PathVariable("id") int id,@RequestBody StudentDTO studentDTO)
+	{
+		Student student1 = converter.convertToEntity(studentDTO);
+		return studentService.updateStudent(id, student1);
+	}
+	//Get Student by id API
+	@GetMapping("/getStudentById/{id}")
+	public StudentDTO getStudentById(@PathVariable("id") int id)
+	{
+		return studentService.GetStudentById(id);
+	}
+	
+	
+	// Get all student details API
+	@GetMapping("/getAllStudents")
+	public List<StudentDTO> getAllStudents()
+	{
+		return studentService.getAllStudents();
+	}
+	
+	//Delete student details By id API
+	@DeleteMapping("/deleteStudentById/{id}")
+	public String deleteStudentById(@PathVariable("id") int id)
+	{
+		return studentService.deleteStudentById(id);
+	}
+	//Delete All the student
+	@DeleteMapping("/deleteAllStudents")
+	public ResponseEntity<String> deleteAllStudents()
+	{
+		studentService.deleteAllStudents();
+		return new ResponseEntity<String>("All students details "
+				+ "have been deleted",HttpStatus.OK);
 	}
 }
